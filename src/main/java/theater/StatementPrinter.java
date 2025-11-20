@@ -42,7 +42,7 @@ public class StatementPrinter {
             result.append(
                     String.format("  %s: %s (%s seats)%n",
                     getPlay(p).getName(),
-                    usd(getThisAmount(p)),
+                    usd(getAmount(p)),
                     p.getAudience())
             );
         }
@@ -55,7 +55,7 @@ public class StatementPrinter {
     private int getTotalAmount() {
         int totalAmount = 0;
         for (Performance p : invoice.getPerformances()) {
-            totalAmount += getThisAmount(p);
+            totalAmount += getAmount(p);
         }
         return totalAmount;
     }
@@ -86,7 +86,7 @@ public class StatementPrinter {
         return plays.get(perf.getPlayID());
     }
 
-    private int getThisAmount(Performance perf) {
+    private int getAmount(Performance perf) {
         int result;
         switch (getPlay(perf).getType()) {
             case "tragedy":
